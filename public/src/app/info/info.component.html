@@ -1,0 +1,14 @@
+<div class="container border border-dark rounded mt-4" *ngIf="showSwitch">
+	<h5>Baked by {{caketoShow.name}}</h5>
+	<div class="row">
+		<div class="col mt-2"><img src="{{caketoShow.image}}" alt="{{caketoShow.name}}" style="height: 75%; width: 100%;">
+		</div>
+		<div class="col mt-2">
+			<p>Average Rating: X</p>
+			<div class="container border border-dark rounded" *ngFor="let rating of caketoShow.rating">
+				<p>Grade: {{rating.rating}} stars</p>
+				<p>Comment: {{rating.comment}} </p>
+			</div>
+		</div>
+	</div>
+</div>

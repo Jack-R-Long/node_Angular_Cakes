@@ -63,7 +63,7 @@ app.get('/cakes', function(req, res) {
 			console.log("Error finding Tasks")
 			res.json({message: "Error", error: err})
 		}else {
-			console.log(Cakes_array)
+			// console.log(Cakes_array)
 			res.json({message: "Success", data: Cakes_array})
 		}
 	})
@@ -106,6 +106,7 @@ app.post('/cakes', (req, res)=> {
 // 	})
 // })
 app.post('/rating', function(req, res) {
+	console.log(req.body)
 	Rating.create({rating: req.body.rating, comment: req.body.comment}, (err, data)=>{
 		if (err){
 			console.log("Error creating rating")

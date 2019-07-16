@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<div class="container">
+  <h1>Rate my Cakes</h1>
+  <div class="row">
+    <div class="col border border-primary rounded">
+      <form (submit)="createCake()">
+        <div class="form-group mt-3">
+          <label for="name">Baker Name</label>
+          <input type="text" class="form-control" name="newCake.name" [(ngModel)]="newCake.name" placeholder="Enter baker name ">
+        </div>
+        <div class="form-group">
+          <label for="image">Image URL</label>
+          <input type="text" class="form-control" name="newCake.image" [(ngModel)]="newCake.image" placeholder="Enter url">
+        </div>
+        <button type="submit" class="btn btn-primary mb-3">Submit</button>
+      </form>
+    </div>
+    <div class="col border border-success rounded overflow-auto" style="height:300px;">
+      <div class="container mt-2" *ngFor="let cake of cakes">
+        <h5>Name: {{cake.name}}</h5>
+        <div class="row">
+          <div class="col">
+            <img src="{{cake.image}}" alt="{{cake.name}}" style="height: 100%; width: 100%;" (click)="cakeShow(cake)">
+          </div>
+          <div class="col">
+              <form (submit)="createComment()">
+                  <div class="form-group">
+                    <select class="form-control" name="newComment.rating" [(ngModel)]="newComment.rating">
+                      <option value="5">5 stars</option>
+                      <option value="4">4 stars</option>
+                      <option value="3">3 stars</option>
+                      <option value="2">2 stars</option>
+                      <option value="1">1 star</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <textarea class="form-control"name="newComment.comment" [(ngModel)]="newComment.comment" rows="3" placeholder="Type your comment here"></textarea>
+                  </div>
+                  <input type="hidden" name="newComment.cake_id" [(ngModel)]="newComment.cake_id" value="{{cake._id}}">
+                  <button type="submit" class="btn btn-outline-primary btn-sm mb-3">Comment</button>
+                </form>
+                <p> {{ newComment | json }} </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-info [caketoShow]='cakeInfo' [showSwitch]='show_Cake'></app-info>
+  <!-- <div class="container border border-dark rounded mt-4" *ngIf="show_Cake">
+    <h5>Baked by {{cakeInfo.name}}</h5>
+    <div class="row">
+      <div class="col mt-2"><img src="{{cakeInfo.image}}" alt="{{cakeInfo.name}}" style="height: 75%; width: 100%;">
+      </div>
+      <div class="col mt-2">
+        <p>Comments</p>
+      </div>
+
+    </div>
+  </div> -->
+</div>
